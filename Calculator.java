@@ -17,6 +17,7 @@ public class Calculator implements ActionListener {
     JButton sevenButton,eightButton,nineButton,fourButton,fiveButton,sixButton,oneButton,twoButton,threeButton,dotButton,zeroButton,plusButton,minusButton,divButton,multiButton,percentButton,clearButton,equalButton,doublezeroButton;
     String labelText,oldValue,newValue;
     float oldValueFloat,newValueFloat,result;
+    char operator;
 
     Calculator() {
 
@@ -159,134 +160,102 @@ public class Calculator implements ActionListener {
     }
     @Override
     public void actionPerformed(ActionEvent e) {
-        if     (e.getSource()== sevenButton) {
-            if(isOperatorClicked) {
-                displayLabel.setText("7");
-                isOperatorClicked=false;
-            } else {
-                displayLabel.setText(displayLabel.getText()+"7"); 
+        if (e.getSource() == sevenButton) {
+            appendDigit("7");
+        } else if (e.getSource() == eightButton) {
+            appendDigit("8");
+        } else if (e.getSource() == nineButton) {
+            appendDigit("9");
+        } else if (e.getSource() == fourButton) {
+            appendDigit("4");
+        } else if (e.getSource() == fiveButton) {
+            appendDigit("5");
+        } else if (e.getSource() == sixButton) {
+            appendDigit("6");
+        } else if (e.getSource() == oneButton) {
+            appendDigit("1");
+        } else if (e.getSource() == twoButton) {
+            appendDigit("2");
+        } else if (e.getSource() == threeButton) {
+            appendDigit("3");
+        } else if (e.getSource() == zeroButton) {
+            appendDigit("0");
+        } else if (e.getSource() == dotButton) {
+            if (!displayLabel.getText().contains(".")) {
+                displayLabel.setText(displayLabel.getText() + ".");
             }
+        } else if (e.getSource() == clearButton) {
+            displayLabel.setText("");
+            oldValue = "";
+            newValue = "";
+            isOperatorClicked = false;
+        } else if (e.getSource() == plusButton) {
+            performOperation('+');
+        } else if (e.getSource() == minusButton) {
+            performOperation('-');
+        } else if (e.getSource() == multiButton) {
+            performOperation('*');
+        } else if (e.getSource() == divButton) {
+            performOperation('/');
+        } else if (e.getSource() == percentButton) {
+            calculatePercentage();
+        } else if (e.getSource() == equalButton) {
+            calculateResult();
+        } else if (e.getSource() == doublezeroButton) {
+            appendDigit("00");
         }
-        else if(e.getSource()== eightButton) {
-            if(isOperatorClicked) {
-                displayLabel.setText("8");
-                isOperatorClicked=false;
-            } else {
-                displayLabel.setText(displayLabel.getText()+"8"); 
-            }
-        }
-        else if(e.getSource()== nineButton) {
-            if(isOperatorClicked) {
-                displayLabel.setText("9");
-                isOperatorClicked=false;
-            } else {
-                displayLabel.setText(displayLabel.getText()+"9"); 
-            }
-        }
-        else if(e.getSource()== fourButton) {
-            if(isOperatorClicked) {
-                displayLabel.setText("4");
-                isOperatorClicked=false;
-            } else {
-                displayLabel.setText(displayLabel.getText()+"4"); 
-            }
-        }
-        else if(e.getSource()== fiveButton) {
-            if(isOperatorClicked) {
-                displayLabel.setText("5");
-                isOperatorClicked=false;
-            } else {
-                displayLabel.setText(displayLabel.getText()+"5"); 
-            }
-        }
-        else if(e.getSource()== sixButton) {
-            if(isOperatorClicked) {
-                displayLabel.setText("6");
-                isOperatorClicked=false;
-            } else {
-                displayLabel.setText(displayLabel.getText()+"6"); 
-            }
-        }
-        else if(e.getSource()== oneButton) {
-            if(isOperatorClicked) {
-                displayLabel.setText("1");
-                isOperatorClicked=false;
-            } else {
-                displayLabel.setText(displayLabel.getText()+"1"); 
-            }
-        }
-        else if(e.getSource()== twoButton) {
-            if(isOperatorClicked) {
-                displayLabel.setText("2");
-                isOperatorClicked=false;
-            } else {
-                displayLabel.setText(displayLabel.getText()+"2"); 
-            }
-        }
-        else if(e.getSource()== threeButton) {
-            if(isOperatorClicked) {
-                displayLabel.setText("3");
-                isOperatorClicked=false;
-            } else {
-                displayLabel.setText(displayLabel.getText()+"3"); 
-            }
-        }
-        else if(e.getSource()== dotButton) {
-            if(isOperatorClicked) {
-                displayLabel.setText(".");
-                isOperatorClicked=false;
-            } else {
-                displayLabel.setText(displayLabel.getText()+"."); 
-            }
-        }
-        else if(e.getSource()== zeroButton) {
-            if(isOperatorClicked) {
-                displayLabel.setText("0");
-                isOperatorClicked=false;
-            } else {
-                displayLabel.setText(displayLabel.getText()+"0"); 
-            }
-        }
-        else if(e.getSource()== doublezeroButton) {
-            if(isOperatorClicked) {
-                displayLabel.setText("00");
-                isOperatorClicked=false;
-            } else {
-                displayLabel.setText(displayLabel.getText()+"00"); 
-            }   
-        }   
-        else if(e.getSource()== divButton) {
-            displayLabel.setText(displayLabel.getText()+"/");
-            isOperatorClicked = true;
-            oldValue = displayLabel.getText();
-        }
-        else if(e.getSource()== multiButton) {
-            displayLabel.setText(displayLabel.getText()+"*");
-            isOperatorClicked = true;
-        }
-        else if(e.getSource()== plusButton) {
-            displayLabel.setText(displayLabel.getText()+"+");
-            isOperatorClicked = true;
-        }
-        else if(e.getSource()== minusButton) {
-            displayLabel.setText(displayLabel.getText()+"-");
-            isOperatorClicked = true;
-        }
-        else if(e.getSource()== percentButton) {
-            displayLabel.setText(displayLabel.getText()+"%");
-            isOperatorClicked = true;
-        }
-        else if(e.getSource()== equalButton)  {
-            newValue = displayLabel.getText();
-            oldValueFloat = Float.parseFloat(oldValue);
-            newValueFloat = Float.parseFloat(newValue);
-            result = oldValueFloat + newValueFloat;
-            displayLabel.setText(Float.toString(result));
-        }    
-
-        else if(e.getSource()== clearButton) 
-            displayLabel.setText(""); 
-        
     }
 
+    private void appendDigit(String digit) {
+        if (isOperatorClicked) {
+            displayLabel.setText("");
+            isOperatorClicked = false;
+        }
+        displayLabel.setText(displayLabel.getText() + digit);
+    }
+
+    private void performOperation(char op) {
+        if (!isOperatorClicked) {
+            isOperatorClicked = true;
+            oldValue = displayLabel.getText();
+            operator = op;
+        }
+    }
+
+    private void calculatePercentage() {
+        if (!isOperatorClicked) {
+            oldValueFloat = Float.parseFloat(displayLabel.getText());
+            result = oldValueFloat / 100;
+            displayLabel.setText(String.valueOf(result));
+        }
+    }
+
+    private void calculateResult() {
+        newValue = displayLabel.getText();
+        oldValueFloat = Float.parseFloat(oldValue);
+        newValueFloat = Float.parseFloat(newValue);
+
+        switch (operator) {
+            case '+':
+                result = oldValueFloat + newValueFloat;
+                break;
+            case '-':
+                result = oldValueFloat - newValueFloat;
+                break;
+            case '*':
+                result = oldValueFloat * newValueFloat;
+                break;
+            case '/':
+                if (newValueFloat != 0) {
+                    result = oldValueFloat / newValueFloat;
+                } else {
+                    displayLabel.setText("Error");
+                    return;
+                }
+                break;
+        }
+
+        displayLabel.setText(String.valueOf(result));
+        isOperatorClicked = true;
+    }
 }
