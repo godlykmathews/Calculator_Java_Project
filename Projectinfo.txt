@@ -4,4 +4,4 @@ Source : Brototype 100K Coding Challenge
 
 Initial remarks
 >UI Complete
->Error when = sign is clicked
+>Error when = is clicked
