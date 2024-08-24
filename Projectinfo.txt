@@ -1,8 +1,8 @@
 Date : 29th June,2023
 Project Name : Java Simple GUI Calculator 
-Source : Brototype 100K Coding Challenge
+Source : Brototype 100K Coding Challenge Java Project
 
 
 Initial remarks
->UI Complete
->Error when = is clicked
+> UI Complete
+> Error when = is clicked
